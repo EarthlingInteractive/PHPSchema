@@ -1,0 +1,12 @@
+{
+	"name": "earthit/schema",
+	"description": "Schema definition classes",
+	"require": {
+		"php": ">=5.2.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"EarthIT_Schema": "lib/"
+		}
+	}
+}
