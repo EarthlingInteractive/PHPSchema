@@ -6,6 +6,12 @@ class EarthIT_Schema_WordUtil
 		return preg_replace('#[^a-z0-9]#', '', strtolower($phrase));
 	}
 	
+	public static function pluralize($phrase) {
+		if( preg_match('/^(.*?)y$/', $phrase, $bif) ) return $bif[1].'ies'; // Well usually
+		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1].'ses';
+		return $phrase.'s';
+	}
+	
 	public static function depluralize($phrase) {
 		if( preg_match('/^(.*?)ies$/', $phrase, $bif) ) return $bif[1].'y';
 		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1];
