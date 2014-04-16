@@ -7,6 +7,7 @@ class EarthIT_Schema_ResourceClass extends EarthIT_Schema_SchemaObject
 	protected $membersArePublic = false;
 	protected $membersAreMutable = false;
 	protected $membersSetIsMutable = false;
+	protected $tableNameOverride = null;
 	
 	protected $fields = array();
 	protected $references = array();
@@ -17,6 +18,7 @@ class EarthIT_Schema_ResourceClass extends EarthIT_Schema_SchemaObject
 	public function membersArePublic() { return $this->membersArePublic; }
 	public function membersAreMutable() { return $this->membersAreMutable; }
 	public function membersSetIsMutable() { return $this->memberSetIsMutable; }
+	public function getTableNameOverride() { return $this->tableNameOverride; }
 	
 	public function getFields() { return $this->fields; }
 	public function getIndexes() { return $this->indexes; }
