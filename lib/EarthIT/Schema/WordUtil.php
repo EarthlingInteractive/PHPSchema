@@ -7,13 +7,14 @@ class EarthIT_Schema_WordUtil
 	}
 	
 	public static function pluralize($phrase) {
-		if( preg_match('/^(.*?)y$/', $phrase, $bif) ) return $bif[1].'ies'; // Well usually
+		if( preg_match('/(^|\W)(staff|data|buffalo|deer|elk|water)$/', $phrase) ) return $phrase;
+		//if( preg_match('/^(.*?)y$/', $phrase, $bif) ) return $bif[1].'ies'; // Well usually
 		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1].'ses';
 		return $phrase.'s';
 	}
 	
 	public static function depluralize($phrase) {
-		if( preg_match('/^(.*?)ies$/', $phrase, $bif) ) return $bif[1].'y';
+		//if( preg_match('/^(.*?)ies$/', $phrase, $bif) ) return $bif[1].'y';
 		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1];
 		return $phrase;
 	}
