@@ -10,11 +10,15 @@ class EarthIT_Schema_WordUtil
 		if( preg_match('/(^|\W)(staff|data|buffalo|deer|elk|water)$/', $phrase) ) return $phrase;
 		//if( preg_match('/^(.*?)y$/', $phrase, $bif) ) return $bif[1].'ies'; // Well usually
 		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1].'ses';
+		if( preg_match('/^(.*?[sc]h)$/', $phrase, $bif) ) return $bif[1].'es';
 		return $phrase.'s';
 	}
 	
+	# It's probably a bad idea to rely on this.
 	public static function depluralize($phrase) {
 		//if( preg_match('/^(.*?)ies$/', $phrase, $bif) ) return $bif[1].'y';
+		if( preg_match('/^(.*?[sc]h)es$/', $phrase, $bif) ) return $bif[1];
+		if( preg_match('/^(.*?s)es$/', $phrase, $bif) ) return $bif[1];
 		if( preg_match('/^(.*?)s$/', $phrase, $bif) ) return $bif[1];
 		return $phrase;
 	}
