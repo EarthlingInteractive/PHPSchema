@@ -14,7 +14,7 @@ class EarthIT_Schema_WordUtil
 		return $phrase.'s';
 	}
 	
-	# It's probably a bad idea to rely on this.
+	// It's probably a bad idea to rely on this.
 	public static function depluralize($phrase) {
 		//if( preg_match('/^(.*?)ies$/', $phrase, $bif) ) return $bif[1].'y';
 		if( preg_match('/^(.*?[sc]h)es$/', $phrase, $bif) ) return $bif[1];
