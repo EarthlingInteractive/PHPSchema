@@ -24,7 +24,7 @@ class EarthIT_Schema_WordUtil
 	}
 	
 	protected static function normalizeWords( $phrase ) {
-		if( is_string($phrase) ) {
+		if( is_scalar($phrase) ) {
 			$phrase = explode(' ', $phrase);
 		}
 		foreach( $phrase as $k=>$word ) {
