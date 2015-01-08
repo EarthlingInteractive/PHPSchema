@@ -27,11 +27,12 @@ class EarthIT_Schema_WordUtil
 		if( is_scalar($phrase) ) {
 			$phrase = explode(' ', $phrase);
 		}
+		$phrase2 = array();
 		foreach( $phrase as $k=>$word ) {
 			if( $word == 'e-mail' ) $word = 'email'; // Special camel case!
-			$phrase[$k] = $word;
+			$phrase2 = array_merge($phrase2, explode('-',$word));
 		}
-		return $phrase;
+		return $phrase2;
 	}
 	
 	public static function toPascalCase( $phrase ) {
