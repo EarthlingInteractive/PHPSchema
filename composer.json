@@ -2,7 +2,7 @@
 	"name": "earthit/schema",
 	"description": "Schema definition classes",
 	"require": {
-		"php": "~5.2"
+		"php": ">=5.2"
 	},
 	"autoload": {
 		"psr-0": {
