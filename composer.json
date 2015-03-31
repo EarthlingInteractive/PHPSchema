@@ -1,6 +1,7 @@
 {
 	"name": "earthit/schema",
 	"description": "Schema definition classes",
+	"license": "MIT",
 	"require": {
 		"php": ">=5.2"
 	},
