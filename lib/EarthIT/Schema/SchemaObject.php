@@ -26,7 +26,7 @@ class EarthIT_Schema_SchemaObject
 		if( isset($this->properties[$longName]) ) return $this->properties[$longName];
 		return [];
 	}
-	public function getFirstPropertyValue( $longName, $default=false ) {
+	public function getFirstPropertyValue( $longName, $default=null ) {
 		if( isset($this->properties[$longName]) ) foreach($this->properties[$longName] as $v) return $v;
 		return $default;
 	}
