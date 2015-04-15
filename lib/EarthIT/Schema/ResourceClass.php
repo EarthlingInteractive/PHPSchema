@@ -34,8 +34,13 @@ class EarthIT_Schema_ResourceClass extends EarthIT_Schema_SchemaObject
 	public function getTableNameOverride() { return $this->tableNameOverride; }
 	
 	public function getFields() { return $this->fields; }
-	public function getIndexes() { return $this->indexes; }
-	public function getReferences() { return $this->references; }
+	public function getField($name) { return $this->fields[$name]; }
 	
-	public function getPrimaryKey() { return $this->indexes['primary']; }
+	public function getIndexes() { return $this->indexes; }
+	public function getIndex($name) { return $this->indexes[$name]; }
+	
+	public function getReferences() { return $this->references; }
+	public function getReference($name) { return $this->references[$name]; }
+	
+	public function getPrimaryKey() { return $this->getIndex('primary'); }
 }
