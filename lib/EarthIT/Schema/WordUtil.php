@@ -35,6 +35,7 @@ class EarthIT_Schema_WordUtil
 		$phrase2 = array();
 		foreach( $phrase as $k=>$word ) {
 			if( $word == 'e-mail' ) $word = 'email'; // Special camel case!
+			if( $word == 'e-mails' ) $word = 'emails'; // E-mails?
 			$phrase2 = array_merge($phrase2, explode('-',$word));
 		}
 		return $phrase2;
