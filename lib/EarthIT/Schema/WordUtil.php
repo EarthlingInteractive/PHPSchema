@@ -23,6 +23,11 @@ class EarthIT_Schema_WordUtil
 		return $phrase;
 	}
 	
+	/**
+	 * Normalize words for symbol-ifying by removing 'special'
+	 * characters and turning 'e-mail' into 'email'.  This is not
+	 * public because it's precise meaning isn't that well defined.
+	 */
 	protected static function normalizeWords( $phrase ) {
 		if( is_scalar($phrase) ) {
 			$phrase = explode(' ', $phrase);
