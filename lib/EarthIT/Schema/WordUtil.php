@@ -55,4 +55,8 @@ class EarthIT_Schema_WordUtil
 		}
 		return implode('', $camelWords);
 	}
+	
+	public static function toDashSeparated( $phrase ) {
+		return implode('-', self::normalizeWords($phrase));
+	}
 }
