@@ -24,7 +24,7 @@ class EarthIT_Schema_SchemaObject
 	}
 	public function getPropertyValues( $longName ) {
 		if( isset($this->properties[$longName]) ) return $this->properties[$longName];
-		return [];
+		return array();
 	}
 	public function getFirstPropertyValue( $longName, $default=null ) {
 		if( isset($this->properties[$longName]) ) foreach($this->properties[$longName] as $v) return $v;
