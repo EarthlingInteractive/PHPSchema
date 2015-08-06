@@ -37,7 +37,13 @@ class EarthIT_Schema_ResourceClass extends EarthIT_Schema_SchemaObject
 	public function getField($name) { return $this->fields[$name]; }
 	
 	public function getIndexes() { return $this->indexes; }
-	public function getIndex($name) { return $this->indexes[$name]; }
+	public function getIndex($name) {
+		if( isset($this->indexes[$name]) ) {
+			return $this->indexes[$name];
+		} else {
+			throw new Exception($this->getName()." doesn't have an index named '$name'");
+		}
+	}
 	
 	public function getReferences() { return $this->references; }
 	public function getReference($name) { return $this->references[$name]; }
