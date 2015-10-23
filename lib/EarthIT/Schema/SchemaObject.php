@@ -3,6 +3,8 @@
 class EarthIT_Schema_SchemaObject
 {
 	protected $name;
+	protected $longName;
+	
 	/**
 	 * Generic array of properties.
 	 * array( fully namespaced property name => array( property values... ) )
@@ -10,14 +12,18 @@ class EarthIT_Schema_SchemaObject
 	protected $properties = array();
 	
 	public function getName() { return $this->name; }
-
+	public function getLongName() { return $this->getFirstPropertyValue(EarthIT_Schema_NS::LONG_NAME); }
+	
 	public static function __set_state($arr) {
 		$obj = new static();
 		foreach( $arr as $k=>$v ) {
 			$obj->$k = $v;
 		}
+		$obj->__wakeup();
 		return $obj;
 	}
+	
+	public function __wakeup() { }
 	
 	public function getProperties() {
 		return $this->properties;
