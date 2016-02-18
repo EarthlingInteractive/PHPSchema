@@ -13,7 +13,7 @@ class EarthIT_Schema
 			$min = EarthIT_Schema_WordUtil::minimize($rc->getName());
 			$this->resourceClassesByMinName[$min] = $rc;
 			if( ($longName = $rc->getLongName()) !== null ) {
-				$this->ResourceClassesByLongName[$longName] = $rc;
+				$this->resourceClassesByLongName[$longName] = $rc;
 			}
 		}
 	}
