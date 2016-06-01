@@ -7,7 +7,10 @@ class EarthIT_Schema_ConventionalSchemaObjectNamer
 extends EarthIT_Schema_SimpleAbstractSchemaObjectNamer
 {
 	protected $nameFormatter;
-	public function __construct( callable $nameFormatter ) {
+	/**
+	 * @param callable $nameFormatter function that formats names: (string $name, boolean $plural ) -> string
+	 */
+	public function __construct( $nameFormatter ) {
 		$this->nameFormatter = $nameFormatter;
 	}
 	
