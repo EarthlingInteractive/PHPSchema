@@ -65,4 +65,8 @@ class EarthIT_Schema_WordUtil
 	public static function toDashSeparated( $phrase ) {
 		return implode('-', self::normalizeWords($phrase));
 	}
+	
+	public static function prefixWithAnOrA( $phrase ) {
+		return in_array(strtolower($phrase[0]), array('a','e','i','o','u')) ? "an $phrase" : "a $phrase";
+	}
 }
