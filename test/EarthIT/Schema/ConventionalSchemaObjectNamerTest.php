@@ -1,6 +1,6 @@
 <?php
 
-class EarthIT_Schema_ConventionalSchemaObjectNamerTest extends PHPUnit_Framework_TestCase
+class EarthIT_Schema_ConventionalSchemaObjectNamerTest extends TOGoS_SimplerTest_TestCase
 {
 	protected $namer;
 	public function setUp() {
