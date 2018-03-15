@@ -106,4 +106,18 @@ class EarthIT_Schema_WordUtil
 	public static function prefixWithAnOrA( $phrase ) {
 		return in_array(strtolower($phrase[0]), array('a','e','i','o','u')) ? "an $phrase" : "a $phrase";
 	}
+	
+	public static function oxfordlyFormatList( $items, $separatorWord='and' ) {
+		$items = array_values($items);
+		$count = count($items);
+		if( $count == 0 ) return '';
+		if( $count == 1 ) return $items[0];
+		if( $count == 2 ) return "{$items[0]} $separatorWord {$items[1]}";
+		$formatted = "";
+		for( $i=0; $i<$count-1; ++$i ) {
+			$formatted .= "{$items[$i]}, ";
+		}
+		$formatted .= "$separatorWord ".$items[$count-1];
+		return $formatted;
+	}
 }

@@ -47,4 +47,16 @@ class EarthIT_Schema_WordUtilTest extends TOGoS_SimplerTest_TestCase
 			"你好, what's up?" => '你好_whats_up',
 		));
 	}
+	
+	public function testOxFordList() {
+		$this->assertEquals('', EarthIT_Schema_WordUtil::oxfordlyFormatList(array()));
+		$this->assertEquals('Mr. McFeely', EarthIT_Schema_WordUtil::oxfordlyFormatList(array('Mr. McFeely')));
+		$this->assertEquals('Lady Elaine and Daniel Striped Tiger',
+			EarthIT_Schema_WordUtil::oxfordlyFormatList(array('Lady Elaine','Daniel Striped Tiger')));
+		$this->assertEquals('King Friday, Henrietta Pussycat, and Cornflake S. Pecially',
+			EarthIT_Schema_WordUtil::oxfordlyFormatList(array(
+				'King Friday','Henrietta Pussycat','Cornflake S. Pecially')));
+		$this->assertEquals('Prince Tuesday or Purple Panda',
+			EarthIT_Schema_WordUtil::oxfordlyFormatList(array('Prince Tuesday', 'Purple Panda'), 'or'));
+	}
 }
