@@ -23,49 +23,86 @@ class EarthIT_Schema_WordUtil
 		return $phrase;
 	}
 	
+	// Not a full list, just good enough for now.
+	protected static $splitteyPunctuation = array('-','_',',','.','/',':',';','?','!');
+	protected static $otherPunctuation = array("'",'"');
+	
 	/**
-	 * Normalize words for symbol-ifying by removing 'special'
+	 * Normalize words for symbol-ifying by removing punctuation-ey
 	 * characters and turning 'e-mail' into 'email'.  This is not
 	 * public because it's precise meaning isn't that well defined.
 	 */
-	protected static function normalizeWords( $phrase ) {
+	protected static function normalizeWords( $phrase, $wordTransform=null ) {
 		if( is_scalar($phrase) ) {
 			$phrase = explode(' ', $phrase);
 		}
 		$phrase2 = array();
 		foreach( $phrase as $k=>$word ) {
-			if( $word == 'e-mail' ) $word = 'email'; // Special camel case!
-			if( $word == 'e-mails' ) $word = 'emails'; // E-mails?
-			$phrase2 = array_merge($phrase2, explode('-',$word));
+			if( $wordTransform != null ) {
+				if( is_string($wordTransform) ) {
+					// so yeah like the built-in PHP functions expect only 1 argument
+					$word = call_user_func($wordTransform, $word);
+				} else {
+					// but ours take 2.
+					$word = call_user_func($wordTransform, $word, $k);
+				}
+			}
+			if( $word == 'e-mail' ) $word = 'email'; // Special case!
+			if( $word == 'e-mails' ) $word = 'emails';
+			
+			// Split on delimit-ey punctuation characters
+			$word = str_replace(self::$splitteyPunctuation, ' ', $word);
+			foreach( explode(' ',$word) as $subword ) {
+				$subword = str_replace(self::$otherPunctuation,'',$subword);
+				if( $subword == '' ) continue;
+				$phrase2[] = $subword;
+			}
 		}
 		return $phrase2;
 	}
 	
+	protected static function normalizeAndDelimitWords( $phrase, $separator, $wordTransform=null ) {
+		$n = implode($separator, self::normalizeWords($phrase, $wordTransform));
+		return $n;
+	}
+	
+	/** BoatyMcBoatface */
 	public static function toPascalCase( $phrase ) {
-		$words = self::normalizeWords($phrase);
-		$pascalWords = array();
-		foreach( $words as $word ) {
-			$pascalWords[] = ucfirst($word);
-		}
-		return implode('', $pascalWords);
+		return self::normalizeAndDelimitWords($phrase, '', 'ucfirst');
 	}
 	
+	/** The transformation to be applied to each word in a camelCased phrase */
+	public static function camelWord($word, $index) {
+		$word = strtolower($word);
+		return $index == 0 ? $word : ucfirst($word);
+	}
+	
+	/** boatyMcboatface; everything's forced to lowercase except for first letters of all but the first word */
 	public static function toCamelCase( $phrase ) {
-		$words = self::normalizeWords($phrase);
-		$i = 0;
-		$camelWords = array();
-		foreach( $words as $word ) {
-			$word = strtolower($word);
-			$camelWords[] = $i == 0 ? $word : ucfirst($word);
-			++$i;
-		}
-		return implode('', $camelWords);
+		return self::normalizeAndDelimitWords($phrase, '', array('EarthIT_Schema_WordUtil', 'camelWord'));
 	}
 	
+	/** hey_its_boaty_mcboatface; lowercase, underscore-separated */
+	public static function toSnakeCase($phrase) {
+		return self::normalizeAndDelimitWords($phrase, '_', 'strtolower');
+	}
+	
+	/** hey-its-boaty-mcboatface; lowercase, dash-separated */
+	public static function toKebabCase($phrase) {
+		return self::normalizeAndDelimitWords($phrase, '-', 'strtolower');
+	}
+	
+	/** hey-its-Boaty-McBoatface; case of words preserved */
 	public static function toDashSeparated( $phrase ) {
-		return implode('-', self::normalizeWords($phrase));
+		return self::normalizeAndDelimitWords($phrase, '-');
+	}
+
+	/** Hey-Its-Boaty-McBoatface; every word gets ucfirsted; great for HTTP headers! */
+	public static function toTrainCase( $phrase ) {
+		return self::normalizeAndDelimitWords($phrase, '-', 'ucfirst');
 	}
 	
+	/** A Boaty McBoatface */
 	public static function prefixWithAnOrA( $phrase ) {
 		return in_array(strtolower($phrase[0]), array('a','e','i','o','u')) ? "an $phrase" : "a $phrase";
 	}
