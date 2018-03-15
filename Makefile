@@ -8,4 +8,4 @@ composer.lock: composer.json
 	composer install
 
 run-unit-tests: vendor
-	vendor/bin/phpsimplertest --bootstrap vendor/autoload.php test
+	vendor/bin/phpsimplertest --bootstrap vendor/autoload.php --colorful-output test
