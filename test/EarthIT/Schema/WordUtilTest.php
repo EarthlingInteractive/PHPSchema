@@ -1,6 +1,7 @@
 <?php
+use PHPUnit\Framework\TestCase;
 
-class EarthIT_Schema_WordUtilTest extends TOGoS_SimplerTest_TestCase
+class EarthIT_Schema_WordUtilTest extends TestCase
 {
 	protected function _testTransform( $transform, $cases ) {
 		foreach( $cases as $input => $expectedOutput ) {

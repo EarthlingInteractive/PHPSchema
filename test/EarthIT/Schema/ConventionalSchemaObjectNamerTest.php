@@ -1,9 +1,10 @@
 <?php
+use PHPUnit\Framework\TestCase;
 
-class EarthIT_Schema_ConventionalSchemaObjectNamerTest extends TOGoS_SimplerTest_TestCase
+class EarthIT_Schema_ConventionalSchemaObjectNamerTest extends TestCase
 {
 	protected $namer;
-	public function setUp() {
+	public function setUp() : void {
 		$this->namer = new EarthIT_Schema_ConventionalSchemaObjectNamer( array($this,'formatName') );
 	}
 	
