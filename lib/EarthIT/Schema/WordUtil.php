@@ -3,7 +3,7 @@
 class EarthIT_Schema_WordUtil
 {
 	public static function minimize($phrase) {
-		return preg_replace('#[^a-z0-9]#', '', strtolower($phrase));
+		return preg_replace('#[^a-z0-9]#', '', strtolower($phrase ?? ''));
 	}
 	
 	public static function pluralize($phrase) {
@@ -73,7 +73,7 @@ class EarthIT_Schema_WordUtil
 	
 	/** The transformation to be applied to each word in a camelCased phrase */
 	public static function camelWord($word, $index) {
-		$word = strtolower($word);
+		$word = strtolower($word ?? '');
 		return $index == 0 ? $word : ucfirst($word);
 	}
 	
