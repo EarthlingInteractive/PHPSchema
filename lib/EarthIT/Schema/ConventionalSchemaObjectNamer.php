@@ -14,7 +14,7 @@ extends EarthIT_Schema_SimpleAbstractSchemaObjectNamer
 		$this->nameFormatter = $nameFormatter;
 	}
 	
-	public function formatName( $name, $plural=false, EarthIT_Schema $s=null ) {
+	public function formatName( $name, $plural=false, EarthIT_Schema|null $s=null ) {
 		return call_user_func( $this->nameFormatter, $name, $plural, $s );
 	}
 }

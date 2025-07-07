@@ -6,7 +6,7 @@ class EarthIT_Schema_ResourceClass extends EarthIT_Schema_SchemaObject
 	protected $hasDbTable = false;
 	protected $membersArePublic = false;
 	protected $membersAreMutable = false;
-	protected $membersSetIsMutable = false;
+	protected $memberSetIsMutable = false;
 	protected $tableNameOverride = null;
 	/**
 	 * An array of namespace components under which the table corresponding
