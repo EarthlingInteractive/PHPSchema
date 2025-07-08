@@ -38,7 +38,7 @@ implements EarthIT_Schema_SchemaObjectNamer
 	}
 	
 	public function indexName(
-		EarthIT_Schema_Index $index, $plural=false, EarthIT_Schema_ResourceClass|null $originRc=null, EarthIT_Schema $s=null
+		EarthIT_Schema_Index $index, $plural=false, EarthIT_Schema_ResourceClass|null $originRc=null, EarthIT_Schema|null $s=null
 	) {
 		return $this->__invoke( $index, $plural, $s );
 	}
