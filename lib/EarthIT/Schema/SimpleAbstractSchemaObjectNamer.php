@@ -43,7 +43,7 @@ implements EarthIT_Schema_SchemaObjectNamer
 		return $this->__invoke( $index, $plural, $s );
 	}
 	
-	public function className( EarthIT_Schema_ResourceClass $rc, $plural=false, EarthIT_Schema|null $s=null ) {
+	public function className( EarthIT_Schema_ResourceClass|null $rc=null, $plural=false, EarthIT_Schema|null $s=null ) {
 		return $this->__invoke( $rc, $plural, $s );
 	}
 }
